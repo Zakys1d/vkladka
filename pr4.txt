@@ -1,0 +1,56 @@
+from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QLabel, QVBoxLayout,
+                             QPushButton, QListWidget, QVBoxLayout,QLineEdit,QComboBox,QSlider,QProgressBar,QTabWidget,QDateEdit,QDateTimeEdit,QDial)
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+import sys
+from random import randint
+from PyQt5 import  QtCore
+
+app = QApplication([])
+window = QWidget()
+
+
+#####
+tab1 = QWidget()
+slider = QSlider()
+bar = QProgressBar()
+bar.setValue(0)
+
+v1 = QVBoxLayout()
+v1.addWidget(slider)
+v1.addWidget(bar)
+
+tab1.setLayout(v1)
+#####
+
+tab2 = QWidget()
+edit = QDateEdit()
+d = QDate(2020, 6, 10)
+edit.setDate(d)
+
+v3 = QVBoxLayout()
+v3.addWidget(edit)
+
+tab2.setLayout(v3)
+
+
+tab3 = QWidget()
+dial = QDial(tab3)
+
+slider.valueChanged.connect(lambda value:bar.setValue(value))
+
+tabs = QTabWidget()
+tabs.addTab(tab1, 'Вкладка №1')
+tabs.addTab(tab2, 'Вкладка №2')
+tabs.addTab(tab3, 'Вкладка №3')
+v2 = QVBoxLayout()
+v2.addWidget(tabs)
+v2.setAlignment(QtCore.Qt.AlignCenter)
+window.setLayout(v2)
+
+
+
+
+window.show()
+app.exec_()
